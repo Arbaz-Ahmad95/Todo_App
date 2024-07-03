@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        div {
+            background-color: aquamarine;
+            margin: auto;
+            width: 500px;
+            height: auto;
+        }
+        input {
+            border: 1px solid black;
+            margin-left: 20px;
+            margin-top: 20px;
+            height: 40px;
+            font-size: 15px;
+            text-align: center;
+        }
+        button {
+            border: 1px solid black;
+            margin-top: 20px;
+            margin-left: 70px;
+            width: 100px;
+            height: 40px;
+            background-color: red;
+            color: white;
+            font-size: 18px;
+        }
+        ul {
+            font-size: 27px;
+        }
+        li {
+            font-size: 23px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TO DO APP</h1>
+    <div>
+        <input type="text" placeholder="enter your task">
+        <button>add task</button>
+        <ul>
+            <li>eat <button class="del">delete</button></li>
+            <li>sleep <button class="del">delete</button></li>
+        </ul>
+        <br><br>
+    </div>
+</body>
+<script>
+    let input = document.querySelector("input");
+    let button = document.querySelector("button");
+    let ul = document.querySelector("ul");
+
+    // Function to add delete functionality to a button
+    function addDeleteFunctionality(btn) {
+        btn.addEventListener("click", function() {
+            let deltext = this.parentElement;
+            deltext.remove();
+        });
+    }
+
+    // Add delete functionality to existing buttons
+    let delButtons = document.querySelectorAll(".del");
+    delButtons.forEach(addDeleteFunctionality);
+
+    button.addEventListener("click", function() {
+        let item = document.createElement("li");
+        let btn = document.createElement("button");
+        btn.innerText = "delete";
+        btn.classList.add("del");
+
+        item.innerText = input.value;
+        ul.appendChild(item);
+        item.appendChild(btn);
+
+        // Add delete functionality to the new button
+        addDeleteFunctionality(btn);
+
+        input.value = "";
+    });
+</script>
+</html>
